@@ -1,6 +1,7 @@
 package com.spring.boot.web.app;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -14,7 +15,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.spring.boot.web.app.controller.RestServiceController;
+import com.spring.boot.web.app.domain.User;
 
 /**
  * 
@@ -33,9 +37,26 @@ public class SpringBootWebAppApplicationTests {
 	}
 
 	@Test
-	public void restServiceGetTest() throws Exception {
+	public void httpGetTest() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/services/get").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(content().string(equalTo("RESTful service response for GET")));
+	}
+
+	@Test
+	public void restServicePostTest() throws Exception {
+		// Manual convert the user object into JSON string by Jackson or other JSON tool
+		User user = new User();
+		user.setId(1L);
+		user.setAge(20);
+		user.setName("userName");
+		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectWriter jsonWriter = objectMapper.writer().withDefaultPrettyPrinter();
+		String jsonUser = jsonWriter.writeValueAsString(user);
+		// Use contentType and content to set the user JSON data into POST body
+		mvc.perform(
+				MockMvcRequestBuilders.post("/services/post").contentType(MediaType.APPLICATION_JSON).content(jsonUser))
+				.andDo(print()).andExpect(status().isOk()).andExpect(content().string(equalTo("OK")));
+		// andDo(print()) print the request & response detail for debug
 	}
 
 }
