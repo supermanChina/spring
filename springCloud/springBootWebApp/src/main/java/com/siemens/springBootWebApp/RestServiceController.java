@@ -1,4 +1,4 @@
-package com.superman.springBootWebApp;
+package com.siemens.springBootWebApp;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

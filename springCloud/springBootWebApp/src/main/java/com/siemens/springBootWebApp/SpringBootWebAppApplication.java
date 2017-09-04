@@ -1,4 +1,4 @@
-package com.superman.springBootWebApp;
+package com.siemens.springBootWebApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
