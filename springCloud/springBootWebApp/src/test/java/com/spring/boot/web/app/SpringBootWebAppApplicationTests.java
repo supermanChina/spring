@@ -1,4 +1,4 @@
-package com.siemens.springBootWebApp;
+package com.spring.boot.web.app;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.siemens.springBootWebApp.RestServiceController;
+import com.spring.boot.web.app.controller.RestServiceController;
 
 /**
  * 
@@ -34,8 +34,8 @@ public class SpringBootWebAppApplicationTests {
 
 	@Test
 	public void restServiceGetTest() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/serviceAPI").accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(content().string(equalTo("RESTful service response")));
+		mvc.perform(MockMvcRequestBuilders.get("/services/get").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(content().string(equalTo("RESTful service response for GET")));
 	}
 
 }
