@@ -38,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 			<version>2.7.0</version>
 		</dependency>
 ```
-- 在application.java同级包中新建类[Swagger2](http://)
+- 在application.java同级包中新建类[Swagger2](src/main/java/com/spring/boot/web/app/Swagger2.java)
   其中：
 	-  `RequestHandlerSelectors.basePackage("com.spring.boot.web.app.controller")`指定生成Swagger文档的包路径 
 	-  
