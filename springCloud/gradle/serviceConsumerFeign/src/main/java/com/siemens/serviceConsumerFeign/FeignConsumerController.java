@@ -21,10 +21,10 @@ public class FeignConsumerController {
     @RequestMapping(value = "/feignConsumer2", method = RequestMethod.GET)
     public String feignConsumer2(){
         StringBuilder sb = new StringBuilder();
-        sb.append(serviceProvider.hello()).append("<br>");
-        sb.append(serviceProvider.hello("name1")).append("\n");
-        sb.append(serviceProvider.hello("name2", 18)).append("\n");
-        sb.append(serviceProvider.hello(new User("name3",28))).append("\n");
+        sb.append(serviceProvider.hello()).append("<br> hot fix");
+        sb.append(serviceProvider.hello("name1")).append("<br>");
+        sb.append(serviceProvider.hello("name2", 18)).append("<br>");
+        sb.append(serviceProvider.hello(new User("name3",28))).append("<br>");
 
         return sb.toString();
     }
