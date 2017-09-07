@@ -32,7 +32,7 @@ public class RestServiceController {
     @ApiImplicitParam(name = "user", value = "Detail of user", required = true, dataType = "User")
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public String restServicePost(@RequestBody User user) {
-        System.out.print("User from requesst body:" + user);
+        System.out.print("User from request body:" + user);
         // save new user into list
         users.put(user.getId(), user);
         return "OK";
